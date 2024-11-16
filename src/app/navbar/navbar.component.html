@@ -7,22 +7,39 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
+                <li class="nav-item" *ngIf="!autenticado">
+                    <a class="nav-link active" aria-current="page" routerLink="/app/autenticar-usuario">
+                        Autenticar Usuário
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="!autenticado">
+                    <a class="nav-link active" aria-current="page" routerLink="/app/criar-usuario">
+                        Criar Conta de Usuário
+                    </a>
+                </li>
+                <li class="nav-item dropdown" *ngIf="autenticado">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Controle de clientes
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" routerLink="app/cadastrar-clientes">
-                                Cadastrar clientes</a></li>
-                        <li><a class="dropdown-item" routerLink="app/consultar-clientes">
-                                Consultar clientes</a></li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li><a class="dropdown-item" href="#">
-                                Relatório de clientes</a></li>
+                        <li><a class="dropdown-item" routerLink="app/cadastrar-
+clientes">Cadastrar clientes</a></li>
+                        <li><a class="dropdown-item" routerLink="app/consultar-
+clientes">Consultar clientes</a></li>
                     </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="autenticado">
+                <li class="nav-item mt-1">
+                    <span class="navbar-text me-3">
+                        Usuário: <strong>{{ usuario }}</strong>
+                    </span>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-outline-secondary btn-sm" (click)="logout()">
+                        Sair do sistema
+                    </button>
                 </li>
             </ul>
         </div>
